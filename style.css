@@ -43,10 +43,6 @@ tr, th {
     opacity: 0;
 }
 
-.boardButton:hover {
-    cursor: pointer;
-}
-
 #newGame {
     font-family: inherit;
     width: 200px;

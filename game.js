@@ -29,23 +29,27 @@ function checkWin(player) {
     if(end) {
         winner = document.getElementById("player").innerHTML.slice(-1);
         var buttons = document.getElementsByClassName("boardButton");
-        for(var i=0; i<buttons.length; i++)
+        for(var i=0; i<buttons.length; i++) {
             buttons[i].setAttribute("disabled",true);
+            buttons[i].setAttribute("style","cursor:auto");
+        }
         document.getElementById("player").innerHTML = "\'"+winner+"\'"+" WON!";
         return;
     }
-    else {
-        if(player.slice(-1) == "O")
-            document.getElementById("player").innerHTML = player.slice(0,player.length-1)+"X";
-        else
-            document.getElementById("player").innerHTML = player.slice(0,player.length-1)+"O";
-    }
+    if(player.slice(-1) == "O")
+        document.getElementById("player").innerHTML = player.slice(0,player.length-1)+"X";
+    else
+        document.getElementById("player").innerHTML = player.slice(0,player.length-1)+"O";
+    for(var i=0; i<9; i++)
+        if(cells[i] != "X" && cells[i] != "O")
+            return;
+    document.getElementById("player").innerHTML = "DRAW!";
 }
 
 function newGame() {
     document.getElementById("player").innerHTML = "Player: O";
     var cells = document.getElementsByTagName("TH");
     for(var i=0; i<9; i++) {
-        cells[i].innerHTML = "<button class=\"boardButton\" onclick=\"insert('"+(i+1)+"')\"></button>";
+        cells[i].innerHTML = "<button class=\"boardButton\" style=\"cursor: pointer\" onclick=\"insert('"+(i+1)+"')\"></button>";
     }
 }
